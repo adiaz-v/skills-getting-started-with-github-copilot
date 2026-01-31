@@ -83,12 +83,23 @@ section h3 {
   margin-top: 8px;
 }
 
-.activity-card .participants ul {
+.activity-card .participants-list {
   list-style: none;
   padding-left: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.delete-icon {
+  cursor: pointer;
+  color: #c00;
+  margin-left: 0.5em;
+  font-size: 1.1em;
+  transition: color 0.2s;
+}
+.delete-icon:hover {
+  color: #f33;
 }
 
 .activity-card .participant {

@@ -166,3 +166,20 @@ def signup_for_activity(activity_name: str, email: str):
     # Add student
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
+
+
+from pydantic import BaseModel
+
+class UnregisterRequest(BaseModel):
+    email: str
+
+@app.post("/activities/{activity_name}/unregister")
+def unregister_participant(activity_name: str, req: UnregisterRequest):
+    if activity_name not in activities:
+        raise HTTPException(status_code=404, detail="Activity not found")
+    activity = activities[activity_name]
+    email = req.email
+    if email not in activity["participants"]:
+        raise HTTPException(status_code=404, detail="Participant not found")
+    activity["participants"].remove(email)
+    return {"message": f"Removed {email} from {activity_name}"}
