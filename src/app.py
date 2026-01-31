@@ -20,6 +20,8 @@ app.mount("/static", StaticFiles(directory=os.path.join(Path(__file__).parent,
           "static")), name="static")
 
 # In-memory activity database
+activities: dict = {}
+
 # Add more activities to the database
 activities.update({
     "Basketball Club": {
